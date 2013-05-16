@@ -79,18 +79,14 @@ public class Display {
             }
         });
         samples[0].add(boton);
-        frame.getContentPane().add(samples[0]);
+        samples[0].setPreferredSize(new Dimension(WIDTH/5, AMPLITUDE));
         frame.setPreferredSize(new Dimension(WIDTH, AMPLITUDE));
-        //Display the window.
-    }
-
-    public static void main(String args[]) {
-        initDisplay();
-        int i=0;
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loc=48;
             location=new GeoPosition(loc,loc);
             map=new JXMapKit();
             map.setDefaultProvider(org.jdesktop.swingx.JXMapKit.DefaultProviders.OpenStreetMaps);
+            map.setPreferredSize(new Dimension(4*WIDTH/5, AMPLITUDE));
             uno=new Waypoint(loc+1,loc+1);
             punto.add(uno);
             painter = new WaypointPainter();
@@ -108,8 +104,15 @@ public class Display {
 */
             map.getMainMap().setOverlayPainter(painter);
             map.setAddressLocation(location);
-            frame.getContentPane().add(map);
+            frame.getContentPane().add(samples[0], BorderLayout.EAST);
+            frame.getContentPane().add(map,BorderLayout.WEST);
+        //Display the window.
+    }
+
+    public static void main(String args[]) {
+        initDisplay();
             /*
+        int i=0;
         while(true){
         
         frame.remove(samples[i]);
